@@ -1,7 +1,11 @@
 # frozen_string_literal: true
-class Lunch
-  def initialize(name, price)
-    @name = name
-    @price = price
+
+module Lunch
+  # lanches
+  class Lunch
+    def initialize(name, price)
+      @name = name
+      @price = price
+    end
   end
 end
