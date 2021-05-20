@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require "rspec"
-require "lanchonete/lanchonete"
+require "lanche_bot/lanchonete/lanchonete"
 
 RSpec.describe "Lanchonete" do
   context "create" do
