@@ -9,5 +9,4 @@ RSpec.describe Menu::MenuMain do
       expect(menu_main).to eq(menu_main)
     end
   end
-
 end
