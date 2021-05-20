@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "lanche_bot/lanchonete/lanchonete"
+require "lanche_bot/restaurant/restaurant"
 
 RSpec.describe "Lanchonete" do
   context "create" do
@@ -10,10 +10,10 @@ RSpec.describe "Lanchonete" do
     end
 
     it "should return name" do
-      lanchonete = Lanchonete::Lanchonete.new(@name, @address)
+      restaurant = Restaurant::Restaurant.new(@name, @address)
 
-      expect(lanchonete.name).to eq(@name)
-      expect(lanchonete.address).to eq(@address)
+      expect(restaurant.name).to eq(@name)
+      expect(restaurant.address).to eq(@address)
     end
   end
 end
