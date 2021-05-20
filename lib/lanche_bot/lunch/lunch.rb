@@ -9,6 +9,5 @@ module Lunch
       @name = name
       @price = price
     end
-
   end
 end
