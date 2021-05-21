@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "rspec"
-require "restaurant/restaurant"
+require "lanche_bot/restaurant/restaurant"
 
 RSpec.describe "Restaurant" do
   context "create" do

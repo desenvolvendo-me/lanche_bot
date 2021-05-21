@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "menu/menu_main"
+require "lanche_bot/menu/menu_main"
 
 RSpec.describe Menu::MenuMain do
   context "when the object is valid" do
