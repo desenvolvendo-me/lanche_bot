@@ -6,7 +6,7 @@ require "lanche_bot/restaurant/restaurant"
 module Order
   # class to order
   class Order
-    attr_accessor :customer, :restaurant
+    attr_accessor :customer, :restaurant, :items
 
     def initialize(customer, restaurant)
       @customer = customer
