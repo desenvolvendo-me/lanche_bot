@@ -4,7 +4,7 @@ require "lanche_bot/order/order"
 
 RSpec.describe Order do
   it "Criar" do
-    customer = Customer::Customer.new("Diego")
+    customer = Customer::Customer.new("Diego", "991234568")
     restaurant = Restaurant::Restaurant.new("Lanches 1000", "Avenida da Paz - 15 - Santa Fé")
     order = Order::Order.new(customer, restaurant)
 
