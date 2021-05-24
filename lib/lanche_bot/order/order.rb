@@ -2,6 +2,9 @@
 
 require "lanche_bot/customer/customer"
 require "lanche_bot/restaurant/restaurant"
+require "lanche_bot/menu/menu_main"
+require "lanche_bot/menu/menu_juice"
+require "lanche_bot/menu/menu_soda"
 
 module Order
   # class to order
