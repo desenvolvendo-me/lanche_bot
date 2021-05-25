@@ -9,9 +9,8 @@ module Offer
   class Offer
     attr_accessor :combo, :customer, :lunch, :juice, :quantity
 
-    def initialize(combo, customer, lunch, juice, quantity)
+    def initialize(combo, lunch, juice, quantity)
       @combo = combo
-      @customer = customer
       @lunch = lunch
       @juice = juice
       @quantity = quantity
