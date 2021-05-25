@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'csv'
+require "csv"
 
 module Customer
   # classe customer
@@ -15,10 +15,9 @@ module Customer
       create(self)
     end
 
-    def create(itself)
-
+    def create(_itself)
       CSV.open(DATA_PATH, "ab") do |csv|
-        csv << [self.id, self.name, self.phone]
+        csv << [id, name, phone]
       end
       self
     end
