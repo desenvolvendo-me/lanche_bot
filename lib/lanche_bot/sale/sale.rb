@@ -5,7 +5,7 @@ require "lanche_bot/combo/combo"
 require "lanche_bot/lunch/lunch"
 
 module Sale
-  #promoçao
+  # promocao
   class Sale
     attr_accessor :combo, :customer, :lunch, :juice, :quantity
 
