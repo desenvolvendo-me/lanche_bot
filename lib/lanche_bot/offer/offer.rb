@@ -4,9 +4,9 @@ require "lanche_bot/customer/customer"
 require "lanche_bot/combo/combo"
 require "lanche_bot/lunch/lunch"
 
-module Sale
+module Offer
   # promocao
-  class Sale
+  class Offer
     attr_accessor :combo, :customer, :lunch, :juice, :quantity
 
     def initialize(combo, customer, lunch, juice, quantity)
