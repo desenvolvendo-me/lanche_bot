@@ -7,7 +7,7 @@
 /spec/reports/
 /tmp/
 .idea/
-data/restaurants.csv
+data/*.csv
 
 # rspec failure tracking
 .rspec_status
