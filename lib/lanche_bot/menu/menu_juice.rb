@@ -3,7 +3,8 @@
 module Menu
   # Menu de sucos
   class MenuJuice
-    attr_reader :name, :cup_size, :price
+    attr_accessor :price
+    attr_reader :name, :cup_size
 
     def initialize(name, cup_size, price)
       @name = name
