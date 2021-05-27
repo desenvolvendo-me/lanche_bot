@@ -11,7 +11,6 @@ RSpec.describe Order do
       @menu_juice = Menu::MenuJuice.new("Laranja", "300 ml", 3.0)
 
       @order = Order::Order.new(@customer, @restaurant, [@menu_main, @menu_juice])
-
     end
 
     it "attributes" do
@@ -25,6 +24,5 @@ RSpec.describe Order do
       expect(@order.items.first.name).to eq("Misto Quente")
       expect(@order.items.last.name).to eq("Laranja")
     end
-
   end
 end

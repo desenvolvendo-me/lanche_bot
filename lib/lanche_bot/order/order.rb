@@ -40,6 +40,5 @@ module Order
     def restaurant_detail
       restaurant.name
     end
-
   end
 end
