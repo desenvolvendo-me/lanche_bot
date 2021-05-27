@@ -20,4 +20,10 @@ RSpec.describe "combo" do
     expect(combo.menu_main.price).to eq(10.00)
     expect(combo.menu_juice.price).to eq(3.00)
   end
+
+  it 'mark item as free' do
+    free_item = Combo::Combo.new(@menu_main, @menu_juice, 2).free_item
+
+    expect(free_item).to eq(@menu_juice.name)
+  end
 end
