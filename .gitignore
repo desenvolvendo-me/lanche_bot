@@ -7,6 +7,7 @@
 /spec/reports/
 /tmp/
 .idea/
+data/*.csv
 
 # rspec failure tracking
 .rspec_status
