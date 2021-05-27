@@ -7,11 +7,11 @@ RSpec.describe Order do
     before do
       @customer = Customer::Customer.new("Diego", 91_999_999)
       @restaurant = Restaurant::Restaurant.new("Lanches 1000", "Avenida da Paz - 15 - Santa Fé")
-      @order = Order::Order.new(@customer, @restaurant)
-
       @menu_main = Menu::MenuMain.new("Misto Quente", "Queijo e Presunto", 2.5)
       @menu_juice = Menu::MenuJuice.new("Laranja", "300 ml", 3.0)
-      @order.items = [@menu_main, @menu_juice]
+
+      @order = Order::Order.new(@customer, @restaurant, [@menu_main, @menu_juice])
+
     end
 
     it "attributes" do
