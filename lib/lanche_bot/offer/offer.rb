@@ -15,5 +15,9 @@ module Offer
       @juice = juice
       @quantity = quantity
     end
+
+    def discount
+      @quantity > 1 ? "Direito a desconto" : "Não tem direito a desconto"
+    end
   end
 end
