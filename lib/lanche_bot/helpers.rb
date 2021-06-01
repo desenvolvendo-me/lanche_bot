@@ -2,6 +2,7 @@
 
 require "csv"
 
+# class Helper
 class Helpers
   def self.csv_parse(file)
     CSV.read(file, options)
