@@ -13,8 +13,6 @@ class Helpers
     end
   end
 
-  private
-
   def self.options
     { col_sep: ",", headers: true }
   end
