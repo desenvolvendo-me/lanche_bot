@@ -30,13 +30,13 @@ RSpec.describe "Restaurant" do
     let(:restaurant) { Restaurant::Restaurant.new(name, address) }
 
     it "change to open" do
-      restaurant.is_open!
+      restaurant.open!
 
       expect(restaurant.open).to eq(true)
     end
 
     it "change to close" do
-      restaurant.is_close!
+      restaurant.close!
 
       expect(restaurant.open).to eq(false)
     end

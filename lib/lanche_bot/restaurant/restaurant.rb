@@ -27,11 +27,11 @@ module Restaurant
       self
     end
 
-    def is_open!
+    def open!
       self.open = true
     end
 
-    def is_close!
+    def close!
       self.open = false
     end
   end
