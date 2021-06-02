@@ -16,7 +16,8 @@ module Restaurant
 
     def self.restaurants
       Helpers.csv_parse(DATA_PATH).map do |row|
-        Restaurant.new(row["name"], row["address"], is_open: (!!row["open"]), id: row["id"])
+        open = row["open"] == "true"
+        Restaurant.new(row["name"], row["address"], is_open: open, id: row["id"])
       end
     end
 
