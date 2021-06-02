@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "lanche_bot/version"
+Dir[File.join(File.dirname(__dir__), "lib/lanche_bot/**/*.rb")].sort.each { |f| require f }
 
 module LancheBot
   class Error < StandardError; end
