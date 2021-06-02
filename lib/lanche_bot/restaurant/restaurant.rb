@@ -25,5 +25,13 @@ module Restaurant
       Helpers.csv_include(DATA_PATH, attributes)
       self
     end
+
+    def is_open!
+      self.open = true
+    end
+
+    def is_close!
+      self.open = false
+    end
   end
 end
