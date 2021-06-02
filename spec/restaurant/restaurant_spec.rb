@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe "Restaurant" do
+  let(:name) { "Godzilla" }
+  let(:address) { "Rua do Divina Providência, nº 1234" }
+
   context "show" do
     let(:restaurants) { Restaurant::Restaurant.restaurants }
 
