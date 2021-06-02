@@ -14,10 +14,14 @@ RSpec.describe "Restaurant" do
   end
 
   context "create" do
-    before do
-      @name = "Godzilla"
-      @address = "Rua do Divina Providência, nº 1234"
+    it "should all attributes" do
+      restaurant = Restaurant::Restaurant.new(name, address).create
+
+      expect(restaurant.name).to eq(name)
+      expect(restaurant.address).to eq(address)
+      expect(restaurant.open).to eq(false)
     end
+  end
 
     it "should return name" do
       restaurant = Restaurant::Restaurant.new(@name, @address)
