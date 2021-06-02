@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "csv"
-
 module Restaurant
   # Restaurant will has name and address
   class Restaurant
@@ -15,10 +13,9 @@ module Restaurant
       create(self)
     end
 
-    def create(_itself)
-      CSV.open(DATA_PATH, "ab") do |csv|
-        csv << [id, name, address]
-      end
+    def create
+      attributes = [id, name, address, open]
+      Helpers.csv_include(DATA_PATH, attributes)
       self
     end
   end
