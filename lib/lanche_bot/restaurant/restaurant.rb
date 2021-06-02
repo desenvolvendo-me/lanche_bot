@@ -13,6 +13,12 @@ module Restaurant
       create(self)
     end
 
+    def self.restaurants
+      Helpers.csv_parse(DATA_PATH).map do |row|
+        Restaurant.new(row["name"], row["address"], is_open: (!!row["open"]), id: row["id"])
+      end
+    end
+
     def create
       attributes = [id, name, address, open]
       Helpers.csv_include(DATA_PATH, attributes)
