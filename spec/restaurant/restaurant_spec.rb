@@ -23,11 +23,19 @@ RSpec.describe "Restaurant" do
     end
   end
 
-    it "should return name" do
-      restaurant = Restaurant::Restaurant.new(@name, @address)
+  context "update is open" do
+    let(:restaurant) { Restaurant::Restaurant.new(name, address) }
 
-      expect(restaurant.name).to eq(@name)
-      expect(restaurant.address).to eq(@address)
+    it "change to open" do
+      restaurant.is_open!
+
+      expect(restaurant.open).to eq(true)
+    end
+
+    it "change to close" do
+      restaurant.is_close!
+
+      expect(restaurant.open).to eq(false)
     end
   end
 end
