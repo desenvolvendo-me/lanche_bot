@@ -5,12 +5,13 @@ module Restaurant
   class Restaurant
     DATA_PATH = "data/restaurants.csv"
     attr_reader :id, :name, :address
+    attr_accessor :open
 
-    def initialize(name, address)
-      @id = rand(2000)
+    def initialize(name, address, is_open: false, id: rand(2000))
+      @id = id
       @name = name
       @address = address
-      create(self)
+      @open = is_open
     end
 
     def self.restaurants
