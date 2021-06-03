@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "csv"
 
 module Customer
@@ -14,7 +15,7 @@ module Customer
     end
 
     def create
-      if validar_dados.length == 0
+      if validar_dados.empty?
         CSV.open(DATA_PATH, "ab") do |csv|
           csv << [id, name, phone]
         end
