@@ -12,14 +12,25 @@ module Restaurant
       @id = rand(2000)
       @name = name
       @address = address
-      create(self)
     end
 
-    def create(_itself)
-      CSV.open(DATA_PATH, "ab") do |csv|
-        csv << [id, name, address]
+    def create
+      if validar_dados.empty?
+        CSV.open(DATA_PATH, "ab") do |csv|
+          csv << [id, name, address]
+        end
+        self
+      else
+        validar_dados
       end
-      self
+    end
+
+    def validar_dados
+      erros = []
+      erros << "O Nome não pode ser vazio" if name.empty?
+      erros << "O Endereço não pode ser vazio" if address.empty?
+      puts erros
+      erros
     end
   end
 end
