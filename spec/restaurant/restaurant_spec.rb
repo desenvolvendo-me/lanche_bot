@@ -14,6 +14,12 @@ RSpec.describe "Restaurant" do
       expect(restaurant.address).to eq("Rua do Divina Providência, nº 1234")
       expect(restaurant.open).to eq(true)
     end
+
+    it "get restaurant with id = 3" do
+      restaurant = Restaurant::Restaurant.find("883")
+
+      expect(restaurant["name"]).to eq("Godzilla")
+    end
   end
 
   context "create" do

@@ -31,5 +31,12 @@ module Customer
       erros << "O Phone não pode ser vazio" if phone.empty?
       erros
     end
+
+    def self.find(id)
+      data = CSV.read(DATA_PATH, { col_sep: ",", headers: true })
+      data.each do |line|
+        return line if line["id"] == id
+      end
+    end
   end
 end

@@ -27,6 +27,13 @@ module Restaurant
       self
     end
 
+    def self.find(id)
+      data = CSV.read(DATA_PATH, { col_sep: ",", headers: true })
+      data.each do |line|
+        return line if line["id"] == id
+      end
+    end
+
     def open!
       self.open = true
     end

@@ -34,11 +34,11 @@ module Order
     private
 
     def customer_detail
-      customer.name
+      customer["name"]
     end
 
     def restaurant_detail
-      restaurant.name
+      restaurant["name"]
     end
   end
 end
