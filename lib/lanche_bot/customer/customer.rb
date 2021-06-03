@@ -12,14 +12,24 @@ module Customer
       @id = rand(2000)
       @name = name
       @phone = phone
-      create(self)
     end
 
-    def create(_itself)
-      CSV.open(DATA_PATH, "ab") do |csv|
-        csv << [id, name, phone]
+    def create
+      if validar_dados.empty?
+        CSV.open(DATA_PATH, "ab") do |csv|
+          csv << [id, name, phone]
+        end
+        self
+      else
+        validar_dados
       end
-      self
+    end
+
+    def validar_dados
+      erros = []
+      erros << "O Nome não pode ser vazio" if name.empty?
+      erros << "O Phone não pode ser vazio" if phone.empty?
+      erros
     end
   end
 end
