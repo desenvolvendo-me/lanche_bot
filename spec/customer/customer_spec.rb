@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
-require "lanche_bot/customer/customer"
-
 RSpec.describe "customer" do
+  let(:name) { "Luciano" }
+  let(:phone) { "18999999" }
+
   it "criar" do
-    name = "Luciano"
-    phone = "18999999"
     customer = Customer::Customer.new(name, phone).create
 
     expect(customer.name).to eq(name)
@@ -13,7 +12,7 @@ RSpec.describe "customer" do
     expect(customer.id).to be_truthy
   end
 
-  it "get custormer with id = 3" do
+  it "get customer with id = 3" do
     customer = Customer::Customer.find("3")
 
     expect(customer["name"]).to eq("Marcos")
