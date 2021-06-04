@@ -2,7 +2,7 @@
 
 RSpec.describe "Restaurant" do
   csv_path = "spec/fixtures/restaurant-test.csv"
-  header = %w[id name address open]
+  header = %w[id name address opening_time open]
 
   before do
     stub_const("Restaurant::Restaurant::DATA_PATH", csv_path)
