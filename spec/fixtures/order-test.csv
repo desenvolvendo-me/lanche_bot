@@ -1,0 +1,2 @@
+id,customer_name,order
+1780,edson,Godzilla,"[#<Menu::MenuMain:0x000055e30a5c0268 @name=""Misto Quente"", @description=""Queijo e Presunto"", @price=2.5>, #<Menu::MenuJuice:0x000055e30a5c0240 @name=""Laranja"", @cup_size=""300 ml"", @price=3.0>]"
