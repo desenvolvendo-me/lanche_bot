@@ -17,4 +17,24 @@ RSpec.describe "customer" do
 
     expect(customer["name"]).to eq("Marcos")
   end
+
+  context "validate" do
+    it "name is required" do
+      customer = Customer::Customer.new("", phone).create
+
+      expect(customer).to include("O Nome não pode ser vazio")
+    end
+
+    it "phone is required" do
+      customer = Customer::Customer.new(name, nil).create
+
+      expect(customer).to include("O Phone não pode ser vazio")
+    end
+
+    it "validate phone duplicated" do
+      customer = Customer::Customer.new(name, phone).create
+
+      expect(customer).to include("Phone já existe")
+    end
+  end
 end
