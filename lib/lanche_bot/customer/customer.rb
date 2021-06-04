@@ -8,8 +8,8 @@ module Customer
     DATA_PATH = "data/customers.csv"
     attr_accessor :id, :name, :phone
 
-    def initialize(name, phone)
-      @id = rand(2000)
+    def initialize(name, phone, id: rand(2000))
+      @id = id
       @name = name
       @phone = phone
     end
