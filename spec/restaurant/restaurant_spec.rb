@@ -2,7 +2,7 @@
 
 RSpec.describe "Restaurant" do
   csv_path = "spec/fixtures/restaurant-test.csv"
-  header = %w[id name address open]
+  header = %w[id name address opening_time open]
 
   before do
     stub_const("Restaurant::Restaurant::DATA_PATH", csv_path)
@@ -24,6 +24,7 @@ RSpec.describe "Restaurant" do
       expect(restaurant.name).to eq(@name)
       expect(restaurant.address).to eq(@address)
       expect(restaurant.open).to eq(false)
+      expect(restaurant.opening_time).to eq("")
     end
 
     it "get restaurant with id = 1" do
@@ -38,6 +39,7 @@ RSpec.describe "Restaurant" do
       expect(@restaurant.name).to eq(@name)
       expect(@restaurant.address).to eq(@address)
       expect(@restaurant.open).to eq(false)
+      expect(@restaurant.opening_time).to eq("")
     end
   end
 
