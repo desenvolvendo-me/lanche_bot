@@ -17,7 +17,7 @@ module Customer
     def self.all
       customers = Helpers.csv_parse(DATA_PATH)
       customers.map do |customer|
-        Customer.new(customer['name'], customer['phone'], id: customer['id'])
+        Customer.new(customer["name"], customer["phone"], id: customer["id"])
       end
     end
 
