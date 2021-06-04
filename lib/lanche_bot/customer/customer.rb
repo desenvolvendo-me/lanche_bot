@@ -40,6 +40,12 @@ module Customer
       errors
     end
 
+    def exists_phone?(phone)
+      Customer.all.select do |customer|
+        return "Phone já existe" if customer.phone == phone
+      end
+    end
+
     def self.find(id)
       data = Helpers.csv_parse(DATA_PATH)
       data.each do |line|
