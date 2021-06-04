@@ -51,14 +51,13 @@ RSpec.describe "Restaurant" do
     let(:restaurant) { Restaurant::Restaurant.new(name, address) }
 
     it "name" do
-      error_name =  Restaurant::Restaurant.new("", address).create
+      error_name = Restaurant::Restaurant.new("", address).create
       expect(error_name).to include("O Nome não pode ser vazio")
     end
 
     it "address" do
-      error_address =  Restaurant::Restaurant.new(name, nil).create
+      error_address = Restaurant::Restaurant.new(name, nil).create
       expect(error_address).to include("O Endereço não pode ser vazio")
     end
-
   end
 end
