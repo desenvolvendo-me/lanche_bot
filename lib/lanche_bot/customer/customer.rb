@@ -48,9 +48,9 @@ module Customer
     end
 
     def self.find(id)
-      data = Helpers.csv_parse(DATA_PATH)
-      data.each do |line|
-        return line if line["id"] == id
+      customers = Customer.all
+      customers.select do |customer|
+        return customer if customer.id == id
       end
     end
   end
