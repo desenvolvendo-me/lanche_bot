@@ -39,7 +39,7 @@ RSpec.describe "Restaurant" do
       expect(@restaurant.name).to eq(@name)
       expect(@restaurant.address).to eq(@address)
       expect(@restaurant.open).to eq(false)
-      expect(restaurant.opening_time).to eq("")
+      expect(@restaurant.opening_time).to eq("")
     end
   end
 
