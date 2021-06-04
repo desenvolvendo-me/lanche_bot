@@ -23,7 +23,7 @@ RSpec.describe Order do
   let(:menu_juice) { Menu::MenuJuice.new("Laranja", "300 ml", 3.0) }
 
   let!(:order) { Order::Order.new(customer, restaurant, [menu_main, menu_juice]).create }
-  let!(:order_without_items) { Order::Order.new(customer, restaurant,).create }
+  let!(:order_without_items) { Order::Order.new(customer, restaurant).create }
 
   context "Create" do
     it "attributes" do
