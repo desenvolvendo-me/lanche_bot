@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe "Restaurant" do
-  let(:name) { "Godzilla" }
+  let(:name) { "Levi" }
   let(:address) { "Rua do Divina Providência, nº 1234" }
 
   context "show" do
@@ -43,8 +43,22 @@ RSpec.describe "Restaurant" do
 
     it "change to close" do
       restaurant.close!
-
       expect(restaurant.open).to eq(false)
     end
+  end
+
+  context "validate" do
+    let(:restaurant) { Restaurant::Restaurant.new(name, address) }
+
+    it "name" do
+      error_name =  Restaurant::Restaurant.new("", address).create
+      expect(error_name).to include("O Nome não pode ser vazio")
+    end
+
+    it "address" do
+      error_address =  Restaurant::Restaurant.new(name, nil).create
+      expect(error_address).to include("O Endereço não pode ser vazio")
+    end
+
   end
 end
