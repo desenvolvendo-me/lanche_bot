@@ -18,7 +18,7 @@ module Restaurant
     def create
       erro = validar_dados
       if erro.empty?
-        attributes = [id, name, address, open, opening_time]
+        attributes = [id, name, address, opening_time, open]
         Helpers.csv_include(DATA_PATH, attributes)
         self
       else
