@@ -8,12 +8,12 @@ RSpec.describe "Restaurant" do
     stub_const("Restaurant::Restaurant::DATA_PATH", csv_path)
   end
 
-  before(:each) {
+  before(:each) do
     restart_csv(csv_path, header)
     @name = "Godzilla"
     @address = "Rua do Divina Providência, nº 1234"
     @restaurant = Restaurant::Restaurant.new(@name, @address, id: "1").create
-  }
+  end
 
   context "show" do
     let(:restaurants) { Restaurant::Restaurant.restaurants }

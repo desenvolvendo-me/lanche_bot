@@ -25,7 +25,6 @@ RSpec.describe Order do
   let!(:order) { Order::Order.new(customer, restaurant, [menu_main, menu_juice]).create }
 
   context "Create" do
-
     it "attributes" do
       expect(order.customer.name).to eq("Luciano")
       expect(order.customer.phone).to eq("992444444")
