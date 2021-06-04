@@ -14,6 +14,13 @@ module Customer
       @phone = phone
     end
 
+    def self.all
+      customers = Helpers.csv_parse(DATA_PATH)
+      customers.map do |customer|
+        Customer.new(customer['name'], customer['phone'], id: customer['id'])
+      end
+    end
+
     def create
       errors = validate_fields
       if errors.empty?
