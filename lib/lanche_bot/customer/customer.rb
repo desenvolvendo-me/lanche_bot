@@ -15,21 +15,22 @@ module Customer
     end
 
     def create
-      if validar_dados.empty?
+      errors = validate_fields
+      if errors.empty?
         CSV.open(DATA_PATH, "ab") do |csv|
           csv << [id, name, phone]
         end
         self
       else
-        validar_dados
+        errors
       end
     end
 
-    def validar_dados
-      erros = []
-      erros << "O Nome não pode ser vazio" if name.empty?
-      erros << "O Phone não pode ser vazio" if phone.empty?
-      erros
+    def validate_fields
+      errors = []
+      errors << "O Nome não pode ser vazio" if name.empty?
+      errors << "O Phone não pode ser vazio" if phone.empty?
+      errors
     end
 
     def self.find(id)
