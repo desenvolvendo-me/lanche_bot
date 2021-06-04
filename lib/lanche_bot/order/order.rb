@@ -22,18 +22,18 @@ module Order
     end
 
     def self.count_orders_by_costumer(name)
-      arr = Helpers.csv_parse(DATA_PATH).select { |row| row[1] == name }
+      arr = Helpers.csv_parse(DATA_PATH).select { |row| row["customer_name"] == name }
       arr.length
     end
 
     private
 
     def customer_detail
-      customer["name"]
+      customer.name
     end
 
     def restaurant_detail
-      restaurant["name"]
+      restaurant.name
     end
   end
 end
