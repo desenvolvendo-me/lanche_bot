@@ -17,7 +17,7 @@ RSpec.describe Order do
     restart_csv(csv_path, header)
   end
 
-  let(:customer) { Customer::Customer.find("2") }
+  let(:customer) { Customer::Customer.find("22") }
   let(:restaurant) { Restaurant::Restaurant.new("Godzilla", "Rua do Divina Providência, nº 1234").create }
   let(:menu_main) { Menu::MenuMain.new("Misto Quente", "Queijo e Presunto", 2.5) }
   let(:menu_juice) { Menu::MenuJuice.new("Laranja", "300 ml", 3.0) }
@@ -27,8 +27,8 @@ RSpec.describe Order do
 
   context "Create" do
     it "attributes" do
-      expect(order.customer.name).to eq("edson")
-      expect(order.customer.phone).to eq("992555555")
+      expect(order.customer.name).to eq("Luciano")
+      expect(order.customer.phone).to eq("992444444")
       expect(order.customer).to eq(customer)
 
       expect(order.restaurant.name).to eq("Godzilla")
@@ -39,7 +39,7 @@ RSpec.describe Order do
     end
 
     it "count orders by customers" do
-      expect(Order::Order.count_orders_by_costumer("edson")).to eq(1)
+      expect(Order::Order.count_orders_by_costumer("Luciano")).to eq(1)
     end
 
     it "order without items" do
