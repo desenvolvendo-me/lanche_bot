@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-require "lanche_bot/customer/customer"
-require "lanche_bot/restaurant/restaurant"
-require "lanche_bot/menu/menu_main"
-require "lanche_bot/menu/menu_juice"
-require "lanche_bot/menu/menu_soda"
-
 require "csv"
 
 module Order
@@ -21,14 +15,17 @@ module Order
       @restaurant = restaurant
       @restaurant_name = restaurant_detail
       @items = items
-      create(self)
     end
 
-    def create(_itself)
-      CSV.open(DATA_PATH, "ab") do |csv|
-        csv << [id, @customer_name, @restaurant_name, items]
-      end
+    def create
+      attributes = [id, @customer_name, @restaurant_name, items]
+      Helpers.csv_include(DATA_PATH, attributes)
       self
+    end
+
+    def self.count_orders_by_costumer(name)
+      arr = Helpers.csv_parse(DATA_PATH).select { |row| row[1] == name }
+      arr.length
     end
 
     private
