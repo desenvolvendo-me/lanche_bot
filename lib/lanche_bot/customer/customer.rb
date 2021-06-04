@@ -8,32 +8,47 @@ module Customer
     DATA_PATH = "data/customers.csv"
     attr_accessor :id, :name, :phone
 
-    def initialize(name, phone)
-      @id = rand(2000)
+    def initialize(name, phone, id: rand(2000))
+      @id = id
       @name = name
       @phone = phone
     end
 
+    def self.all
+      customers = Helpers.csv_parse(DATA_PATH)
+      customers.map do |customer|
+        Customer.new(customer["name"], customer["phone"], id: customer["id"])
+      end
+    end
+
     def create
-      if validar_dados.empty?
+      errors = validate_fields
+      if errors.nil? || errors.empty?
         CSV.open(DATA_PATH, "ab") do |csv|
           csv << [id, name, phone]
         end
         self
       else
-        validar_dados
+        errors
       end
     end
 
-    def validar_dados
-      erros = []
-      erros << "O Nome não pode ser vazio" if name.empty?
-      erros << "O Phone não pode ser vazio" if phone.empty?
-      erros
+    def validate_fields
+      errors = []
+      errors << "O Nome não pode ser vazio" if name.nil? || name.empty?
+      errors << "O Phone não pode ser vazio" if phone.nil? || phone.empty?
+      errors << exists_phone?(phone)
+      errors.flatten
+    end
+
+    def exists_phone?(phone)
+      Customer.all.select do |customer|
+        return "Phone já existe" if customer.phone == phone
+      end
     end
 
     def self.find(id)
-      data = CSV.read(DATA_PATH, { col_sep: ",", headers: true })
+      data = Helpers.csv_parse(DATA_PATH)
       data.each do |line|
         return line if line["id"] == id
       end
