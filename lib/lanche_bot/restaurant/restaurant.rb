@@ -14,17 +14,29 @@ module Restaurant
       @open = is_open
     end
 
+    def create
+      erro = validar_dados
+      if erro.empty?
+        attributes = [id, name, address, open]
+        Helpers.csv_include(DATA_PATH, attributes)
+        self
+      else
+        erro
+      end
+    end
+
+    def validar_dados
+      erros = []
+      erros << "O Nome não pode ser vazio" if name.nil? || name.empty?
+      erros << "O Endereço não pode ser vazio" if address.nil? || address.empty?
+      erros
+    end
+
     def self.restaurants
       Helpers.csv_parse(DATA_PATH).map do |row|
         open = row["open"] == "true"
         Restaurant.new(row["name"], row["address"], is_open: open, id: row["id"])
       end
-    end
-
-    def create
-      attributes = [id, name, address, open]
-      Helpers.csv_include(DATA_PATH, attributes)
-      self
     end
 
     def self.find(id)
