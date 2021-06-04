@@ -10,7 +10,7 @@ RSpec.describe Order do
       @menu_main = Menu::MenuMain.new("Misto Quente", "Queijo e Presunto", 2.5)
       @menu_juice = Menu::MenuJuice.new("Laranja", "300 ml", 3.0)
 
-      @order = Order::Order.new(@customer, @restaurant, [@menu_main, @menu_juice])
+      @order = Order::Order.new(@customer, @restaurant, [@menu_main, @menu_juice]).create
     end
 
     it "attributes" do
@@ -23,6 +23,10 @@ RSpec.describe Order do
 
       expect(@order.items.first.name).to eq("Misto Quente")
       expect(@order.items.last.name).to eq("Laranja")
+    end
+
+    it "count orders by customers" do
+      expect(Order::Order.count_orders_by_costumer("Luciano")).to eq(4)
     end
   end
 end
