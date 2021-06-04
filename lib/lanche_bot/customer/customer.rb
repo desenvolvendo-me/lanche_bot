@@ -34,7 +34,7 @@ module Customer
     end
 
     def self.find(id)
-      data = CSV.read(DATA_PATH, { col_sep: ",", headers: true })
+      data = Helpers.csv_parse(DATA_PATH)
       data.each do |line|
         return line if line["id"] == id
       end
