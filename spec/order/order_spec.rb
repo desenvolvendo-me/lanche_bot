@@ -3,30 +3,43 @@
 require "lanche_bot/order/order"
 
 RSpec.describe Order do
-  context "Create" do
-    before do
-      @customer = Customer::Customer.find("1")
-      @restaurant = Restaurant::Restaurant.find("883")
-      @menu_main = Menu::MenuMain.new("Misto Quente", "Queijo e Presunto", 2.5)
-      @menu_juice = Menu::MenuJuice.new("Laranja", "300 ml", 3.0)
+  csv_path = "spec/fixtures/order-test.csv"
+  header = %w[id customer_name order]
 
-      @order = Order::Order.new(@customer, @restaurant, [@menu_main, @menu_juice]).create
-    end
+  before do
+    stub_const("Order::Order::DATA_PATH", csv_path)
+    stub_const("Restaurant::Restaurant::DATA_PATH", "spec/fixtures/restaurant-test.csv")
+    stub_const("Customer::Customer::DATA_PATH", "spec/fixtures/customers-test.csv")
+    Customer::Customer.new("Luciano", "992444444", id: "22").create
+  end
+
+  before(:each) do
+    restart_csv(csv_path, header)
+  end
+
+  let(:customer) { Customer::Customer.find("22") }
+  let(:restaurant) { Restaurant::Restaurant.new("Godzilla", "Rua do Divina Providência, nº 1234").create }
+  let(:menu_main) { Menu::MenuMain.new("Misto Quente", "Queijo e Presunto", 2.5) }
+  let(:menu_juice) { Menu::MenuJuice.new("Laranja", "300 ml", 3.0) }
+
+  let!(:order) { Order::Order.new(customer, restaurant, [menu_main, menu_juice]).create }
+
+  context "Create" do
 
     it "attributes" do
-      expect(@order.customer["name"]).to eq("Levi")
-      expect(@order.customer["phone"]).to eq("992444444")
-      expect(@order.customer).to eq(@customer)
+      expect(order.customer.name).to eq("Luciano")
+      expect(order.customer.phone).to eq("992444444")
+      expect(order.customer).to eq(customer)
 
-      expect(@order.restaurant["name"]).to eq("Godzilla")
-      expect(@order.restaurant).to eq(@restaurant)
+      expect(order.restaurant.name).to eq("Godzilla")
+      expect(order.restaurant).to eq(restaurant)
 
-      expect(@order.items.first.name).to eq("Misto Quente")
-      expect(@order.items.last.name).to eq("Laranja")
+      expect(order.items.first.name).to eq("Misto Quente")
+      expect(order.items.last.name).to eq("Laranja")
     end
 
     it "count orders by customers" do
-      expect(Order::Order.count_orders_by_costumer("Luciano")).to eq(4)
+      expect(Order::Order.count_orders_by_costumer("Luciano")).to eq(1)
     end
   end
 end
