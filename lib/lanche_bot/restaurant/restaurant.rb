@@ -40,9 +40,9 @@ module Restaurant
     end
 
     def self.find(id)
-      data = CSV.read(DATA_PATH, { col_sep: ",", headers: true })
-      data.each do |line|
-        return line if line["id"] == id
+      restaurants = Restaurant.restaurants
+      restaurants.each do |restaurant|
+        return restaurant if restaurant.id == id
       end
     end
 
