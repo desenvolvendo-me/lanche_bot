@@ -23,7 +23,7 @@ module Customer
 
     def create
       errors = validate_fields
-      if errors.empty?
+      if errors.nil? || errors.empty?
         CSV.open(DATA_PATH, "ab") do |csv|
           csv << [id, name, phone]
         end
@@ -35,9 +35,10 @@ module Customer
 
     def validate_fields
       errors = []
-      errors << "O Nome não pode ser vazio" if name.empty?
-      errors << "O Phone não pode ser vazio" if phone.empty?
-      errors
+      errors << "O Nome não pode ser vazio" if name.nil? || name.empty?
+      errors << "O Phone não pode ser vazio" if phone.nil? || phone.empty?
+      errors << exists_phone?(phone)
+      errors.flatten
     end
 
     def exists_phone?(phone)
