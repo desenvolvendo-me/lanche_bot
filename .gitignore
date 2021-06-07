@@ -7,7 +7,9 @@
 /spec/reports/
 /tmp/
 .idea/
-data/*.csv
+package-lock.json
+package.json
 
 # rspec failure tracking
 .rspec_status
+node_modules

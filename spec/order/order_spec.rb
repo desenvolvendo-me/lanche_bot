@@ -3,26 +3,47 @@
 require "lanche_bot/order/order"
 
 RSpec.describe Order do
-  context "Create" do
-    before do
-      @customer = Customer::Customer.new("Diego", 91_999_999)
-      @restaurant = Restaurant::Restaurant.new("Lanches 1000", "Avenida da Paz - 15 - Santa Fé")
-      @menu_main = Menu::MenuMain.new("Misto Quente", "Queijo e Presunto", 2.5)
-      @menu_juice = Menu::MenuJuice.new("Laranja", "300 ml", 3.0)
+  csv_path = "spec/fixtures/order-test.csv"
+  header = %w[id customer_name order]
 
-      @order = Order::Order.new(@customer, @restaurant, [@menu_main, @menu_juice])
+  before do
+    stub_const("Order::Order::DATA_PATH", csv_path)
+    stub_const("Restaurant::Restaurant::DATA_PATH", "spec/fixtures/restaurant-test.csv")
+    stub_const("Customer::Customer::DATA_PATH", "spec/fixtures/customers-test.csv")
+    Customer::Customer.new("Luciano", "992444444", id: "22").create
+  end
+
+  before(:each) do
+    restart_csv(csv_path, header)
+  end
+
+  let(:customer) { Customer::Customer.find("22") }
+  let(:restaurant) { Restaurant::Restaurant.new("Godzilla", "Rua do Divina Providência, nº 1234").create }
+  let(:menu_main) { Menu::MenuMain.new("Misto Quente", "Queijo e Presunto", 2.5) }
+  let(:menu_juice) { Menu::MenuJuice.new("Laranja", "300 ml", 3.0) }
+
+  let!(:order) { Order::Order.new(customer, restaurant, [menu_main, menu_juice]).create }
+  let!(:order_without_items) { Order::Order.new(customer, restaurant).create }
+
+  context "Create" do
+    it "attributes" do
+      expect(order.customer.name).to eq("Luciano")
+      expect(order.customer.phone).to eq("992444444")
+      expect(order.customer).to eq(customer)
+
+      expect(order.restaurant.name).to eq("Godzilla")
+      expect(order.restaurant).to eq(restaurant)
+
+      expect(order.items.first.name).to eq("Misto Quente")
+      expect(order.items.last.name).to eq("Laranja")
     end
 
-    it "attributes" do
-      expect(@order.customer.name).to eq("Diego")
-      expect(@order.customer.phone).to eq(91_999_999)
-      expect(@order.customer).to eq(@customer)
+    it "count orders by customers" do
+      expect(Order::Order.count_orders_by_costumer("Luciano")).to eq(1)
+    end
 
-      expect(@order.restaurant.name).to eq("Lanches 1000")
-      expect(@order.restaurant).to eq(@restaurant)
-
-      expect(@order.items.first.name).to eq("Misto Quente")
-      expect(@order.items.last.name).to eq("Laranja")
+    it "order without items" do
+      expect(order_without_items).to include("O pedido deve ter ao menos 1 item")
     end
   end
 end

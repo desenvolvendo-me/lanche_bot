@@ -1,1 +1,5 @@
-883,Godzilla,"Rua do Divina Providência, nº 1234"
+id,name,address,opening_time,open
+883,Godzilla,"Rua do Divina Providência, nº 1234","",true
+777,Lanches 1000,Avenida da Paz - 15 - Santa Fé,"",false
+421,Zeh do Burgão,Rua do bobo - num 0,"",true
+502,Açai Deliciah,Travessa José Augustinho - 33,"",false
