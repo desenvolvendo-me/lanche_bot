@@ -4,19 +4,20 @@ module Order
   # class to order
   class Order
     DATA_PATH = "data/orders.csv"
-    attr_reader :id, :customer, :restaurant, :items
+    attr_reader :id, :customer, :restaurant, :items, :confirmed
 
-    def initialize(customer, restaurant, items = [])
+    def initialize(customer, restaurant, items = [], confirmed: false)
       @id = rand(2000)
       @customer = customer
       @restaurant = restaurant
       @items = items
+      @confirmed = confirmed
     end
 
     def create
       errors = validate_fields
       if errors.empty?
-        attributes = [id, customer_detail, restaurant_detail, items]
+        attributes = [id, customer_detail, restaurant_detail, items, confirmed]
         Helpers.csv_include(DATA_PATH, attributes)
         self
       else
@@ -33,6 +34,10 @@ module Order
     def self.count_orders_by_costumer(name)
       arr = Helpers.csv_parse(DATA_PATH).select { |row| row["customer_name"] == name }
       arr.length
+    end
+
+    def confirm_order
+      @confirmed = true
     end
 
     private
