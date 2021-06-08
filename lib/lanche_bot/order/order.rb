@@ -16,20 +16,20 @@ module Order
     end
 
     def create
-      erro = validar_dados
-      if erro.empty?
+      errors = validate_fields
+      if errors.empty?
         attributes = [id, @customer_name, @restaurant_name, items]
         Helpers.csv_include(DATA_PATH, attributes)
         self
       else
-        erro
+        errors
       end
     end
 
-    def validar_dados
-      erros = []
-      erros << "O pedido deve ter ao menos 1 item" unless items.any?
-      erros
+    def validate_fields
+      errors = []
+      errors << "O pedido deve ter ao menos 1 item" unless items.any?
+      errors
     end
 
     def self.count_orders_by_costumer(name)
