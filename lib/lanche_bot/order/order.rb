@@ -4,7 +4,7 @@ module Order
   # class to order
   class Order
     DATA_PATH = "data/orders.csv"
-    attr_accessor :id, :customer, :restaurant, :items
+    attr_reader :id, :customer, :restaurant, :items
 
     def initialize(customer, restaurant, items = [])
       @id = rand(2000)
