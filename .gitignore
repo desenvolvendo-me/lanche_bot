@@ -13,5 +13,3 @@ package.json
 # rspec failure tracking
 .rspec_status
 node_modules
-
-spec/fixtures/*
