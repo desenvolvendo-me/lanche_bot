@@ -57,6 +57,5 @@ RSpec.describe Order do
 
       expect(order.confirmed).to be_truthy
     end
-
   end
 end
