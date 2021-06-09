@@ -54,7 +54,6 @@ RSpec.describe Order do
   end
 
   context "order confirm" do
-
     it "order not confirm default" do
       expect(order_create[:order].confirmed).to be_falsey
     end
