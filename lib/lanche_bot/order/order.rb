@@ -37,9 +37,8 @@ module Order
       arr.length
     end
 
-    def self.new_costumer?(name, restaurant)
-      arr = Helpers.csv_parse("data/customers.csv").select { |row| row["name"] == name }
-      return "Olá, aqui é da Lanchonete #{restaurant}" if arr.length.zero?
+    def new_custumer?
+      "Olá, aqui é da Lanchonete #{restaurant.name}" if Order.count_orders_by_costumer(customer.name) == 1
     end
   end
 end
