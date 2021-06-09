@@ -20,9 +20,9 @@ module Order
       if erro.empty?
         attributes = [id, @customer_name, @restaurant_name, items]
         Helpers.csv_include(DATA_PATH, attributes)
-        self
+        { order: self, message: new_customer? }
       else
-        erro
+        { order: nil, message: erro }
       end
     end
 
@@ -37,7 +37,7 @@ module Order
       arr.length
     end
 
-    def new_custumer?
+    def new_customer?
       "Olá, aqui é da Lanchonete #{restaurant.name}" if Order.count_orders_by_costumer(customer.name) == 1
     end
   end
