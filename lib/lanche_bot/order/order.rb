@@ -6,7 +6,7 @@ module Order
     DATA_PATH = "data/orders.csv"
     attr_reader :id, :customer, :restaurant, :items, :confirmed
 
-    def initialize(customer, restaurant, items = [], confirmed: "false")
+    def initialize(args)
       @id = rand(2000)
       @customer = customer
       @restaurant = restaurant
@@ -38,6 +38,10 @@ module Order
 
     def new_customer?
       "Olá, aqui é da Lanchonete #{restaurant.name}" if Order.count_orders_by_costumer(customer.name) == 1
+    end
+
+    def order_confirmed?
+      "Seu Pedido Foi Confirmado!" if @confirmed
     end
 
     def confirm_order
