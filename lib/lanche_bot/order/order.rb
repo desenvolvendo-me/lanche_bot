@@ -8,10 +8,10 @@ module Order
 
     def initialize(args)
       @id = rand(2000)
-      @customer = customer
-      @restaurant = restaurant
-      @items = items
-      @confirmed = confirmed.downcase == "true"
+      @customer = args.fetch(:customer)
+      @restaurant = args.fetch(:restaurant)
+      @items = args.fetch(:items, [])
+      @confirmed = args.fetch(:confirmed, false)
     end
 
     def create
