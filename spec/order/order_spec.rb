@@ -4,7 +4,7 @@ require "lanche_bot/order/order"
 
 RSpec.describe Order do
   csv_path = "spec/fixtures/order-test.csv"
-  header = %w[id customer_name order confirmed]
+  header = %w[id customer_name customer_phone order confirmed]
 
   before do
     stub_const("Order::Order::DATA_PATH", csv_path)
@@ -41,7 +41,7 @@ RSpec.describe Order do
     end
 
     it "count orders by customers" do
-      expect(Order::Order.count_orders_by_costumer("Luciano")).to eq(1)
+      expect(Order::Order.count_orders_by_costumer("992444444")).to eq(1)
     end
 
     it "order without items" do

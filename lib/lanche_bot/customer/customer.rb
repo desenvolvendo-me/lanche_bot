@@ -6,7 +6,7 @@ module Customer
   # classe customer
   class Customer
     DATA_PATH = "data/customers.csv"
-    attr_accessor :id, :name, :phone
+    attr_reader :id, :name, :phone
 
     def initialize(name, phone, id: rand(2000))
       @id = id
@@ -22,8 +22,8 @@ module Customer
     end
 
     def create
-      errors = validate_fields
-      if errors.nil? || errors.empty?
+      errors = validate_fields || []
+      if errors.empty?
         CSV.open(DATA_PATH, "ab") do |csv|
           csv << [id, name, phone]
         end
@@ -35,22 +35,31 @@ module Customer
 
     def validate_fields
       errors = []
-      errors << "O Nome não pode ser vazio" if name.nil? || name.empty?
-      errors << "O Phone não pode ser vazio" if phone.nil? || phone.empty?
-      errors << exists_phone?(phone)
+      errors << "O Nome não pode ser vazio" if !name || name.empty?
+      errors << "O Phone não pode ser vazio" if !phone || phone.empty?
+      errors << exists_phone?
       errors.flatten
     end
 
-    def exists_phone?(phone)
-      Customer.all.select do |customer|
-        return "Phone já existe" if customer.phone == phone
+    def self.find(id)
+      customers = all
+      customers.select do |customer|
+        return customer if customer.id == id
       end
     end
 
-    def self.find(id)
-      customers = Customer.all
+    def self.search_by_phone(customer_phone)
+      customers = all
       customers.select do |customer|
-        return customer if customer.id == id
+        return customer if customer.phone == customer_phone
+      end
+    end
+
+    private
+
+    def exists_phone?
+      Customer.all.select do |customer|
+        return "Phone já existe" if customer.phone == phone
       end
     end
   end
