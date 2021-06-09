@@ -42,14 +42,14 @@ module Customer
     end
 
     def self.find(id)
-      customers = Customer.all
+      customers = all
       customers.select do |customer|
         return customer if customer.id == id
       end
     end
 
     def self.search_by_phone(customer_phone)
-      customers = Customer.all
+      customers = all
       customers.select do |customer|
         return customer if customer.phone == customer_phone
       end
