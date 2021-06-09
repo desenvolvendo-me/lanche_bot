@@ -72,6 +72,5 @@ RSpec.describe Order do
 
       expect(order_create[:order].order_confirmed?).to eq("Seu Pedido Foi Confirmado!")
     end
-
   end
 end
