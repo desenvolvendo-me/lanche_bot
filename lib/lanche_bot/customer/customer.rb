@@ -6,7 +6,7 @@ module Customer
   # classe customer
   class Customer
     DATA_PATH = "data/customers.csv"
-    attr_accessor :id, :name, :phone
+    attr_reader :id, :name, :phone
 
     def initialize(name, phone, id: rand(2000))
       @id = id
