@@ -6,18 +6,18 @@ module Order
     DATA_PATH = "data/orders.csv"
     attr_reader :id, :customer, :restaurant, :items, :confirmed
 
-    def initialize(customer, restaurant, items = [], confirmed: false)
+    def initialize(customer, restaurant, items = [], confirmed: "false")
       @id = rand(2000)
       @customer = customer
       @restaurant = restaurant
       @items = items
-      @confirmed = confirmed
+      @confirmed = confirmed.downcase == "true"
     end
 
     def create
       errors = validate_fields
       if errors.empty?
-        attributes = [id, customer_detail, restaurant_detail, items, confirmed]
+        attributes = [id, customer_detail, restaurant_detail, items, confirmed.to_s]
         Helpers.csv_include(DATA_PATH, attributes)
         self
       else
