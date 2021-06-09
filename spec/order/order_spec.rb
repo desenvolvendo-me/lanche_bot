@@ -54,14 +54,15 @@ RSpec.describe Order do
   end
 
   context "order confirm" do
+
     it "order not confirm default" do
-      expect(order.confirmed).to be_falsey
+      expect(order_create[:order].confirmed).to be_falsey
     end
 
     it "order confirmed" do
-      order.confirm_order
+      order_create[:order].confirm_order
 
-      expect(order.confirmed).to be_truthy
+      expect(order_create[:order].confirmed).to be_truthy
     end
   end
 end
