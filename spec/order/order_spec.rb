@@ -4,7 +4,7 @@ require "lanche_bot/order/order"
 
 RSpec.describe Order do
   csv_path = "spec/fixtures/order-test.csv"
-  header = %w[id customer_name order]
+  header = %w[id customer_name order confirmed]
 
   before do
     stub_const("Order::Order::DATA_PATH", csv_path)
