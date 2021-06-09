@@ -9,9 +9,7 @@ module Order
     def initialize(customer, restaurant, items = [], confirmed: "false")
       @id = rand(2000)
       @customer = customer
-      @customer_name = customer.name
       @restaurant = restaurant
-      @restaurant_name = restaurant.name
       @items = items
       @confirmed = confirmed.downcase == "true"
     end
@@ -19,7 +17,7 @@ module Order
     def create
       errors = validate_fields
       if errors.empty?
-        attributes = [id, customer_name, restaurant_name, items, confirmed.to_s]
+        attributes = [id, customer.name, restaurant.name, items, confirmed.to_s]
         Helpers.csv_include(DATA_PATH, attributes)
         { order: self, message: new_customer? }
       else
