@@ -57,7 +57,7 @@ module Customer
 
     private
 
-    def exists_phone?(phone)
+    def exists_phone?
       Customer.all.select do |customer|
         return "Phone já existe" if customer.phone == phone
       end
