@@ -9,9 +9,9 @@ module Order
     def initialize(customer, restaurant, items = [])
       @id = rand(2000)
       @customer = customer
-      @customer_name = customer_detail
+      @customer_name = customer.name
       @restaurant = restaurant
-      @restaurant_name = restaurant_detail
+      @restaurant_name = restaurant.name
       @items = items
     end
 
@@ -37,14 +37,9 @@ module Order
       arr.length
     end
 
-    private
-
-    def customer_detail
-      customer.name
-    end
-
-    def restaurant_detail
-      restaurant.name
+    def self.new_costumer?(name, restaurant)
+      arr = Helpers.csv_parse("data/customers.csv").select { |row| row["name"] == name }
+      return "Olá, aqui é da Lanchonete #{restaurant}" if arr.length.zero?
     end
   end
 end
