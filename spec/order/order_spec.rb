@@ -4,7 +4,7 @@ require "lanche_bot/order/order"
 
 RSpec.describe Order do
   csv_path = "spec/fixtures/order-test.csv"
-  header = %w[id customer_name order]
+  header = %w[id customer_name order confirmed]
 
   before do
     stub_const("Order::Order::DATA_PATH", csv_path)
@@ -44,6 +44,18 @@ RSpec.describe Order do
 
     it "order without items" do
       expect(order_without_items).to include("O pedido deve ter ao menos 1 item")
+    end
+  end
+
+  context "order confirm" do
+    it "order not confirm default" do
+      expect(order.confirmed).to be_falsey
+    end
+
+    it "order confirmed" do
+      order.confirm_order
+
+      expect(order.confirmed).to be_truthy
     end
   end
 end

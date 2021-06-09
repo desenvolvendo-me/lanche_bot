@@ -4,37 +4,40 @@ module Order
   # class to order
   class Order
     DATA_PATH = "data/orders.csv"
-    attr_accessor :id, :customer, :restaurant, :items
+    attr_reader :id, :customer, :restaurant, :items, :confirmed
 
-    def initialize(customer, restaurant, items = [])
+    def initialize(customer, restaurant, items = [], confirmed: "false")
       @id = rand(2000)
       @customer = customer
-      @customer_name = customer_detail
       @restaurant = restaurant
-      @restaurant_name = restaurant_detail
       @items = items
+      @confirmed = confirmed.downcase == "true"
     end
 
     def create
-      erro = validar_dados
-      if erro.empty?
-        attributes = [id, @customer_name, @restaurant_name, items]
+      errors = validate_fields
+      if errors.empty?
+        attributes = [id, customer_detail, restaurant_detail, items, confirmed.to_s]
         Helpers.csv_include(DATA_PATH, attributes)
         self
       else
-        erro
+        errors
       end
     end
 
-    def validar_dados
-      erros = []
-      erros << "O pedido deve ter ao menos 1 item" unless items.any?
-      erros
+    def validate_fields
+      errors = []
+      errors << "O pedido deve ter ao menos 1 item" unless items.any?
+      errors
     end
 
     def self.count_orders_by_costumer(name)
       arr = Helpers.csv_parse(DATA_PATH).select { |row| row["customer_name"] == name }
       arr.length
+    end
+
+    def confirm_order
+      @confirmed = true
     end
 
     private
