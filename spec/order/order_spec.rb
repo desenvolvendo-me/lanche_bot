@@ -22,11 +22,13 @@ RSpec.describe Order do
   let(:menu_main) { Menu::MenuMain.new("Misto Quente", "Queijo e Presunto", 2.5) }
   let(:menu_juice) { Menu::MenuJuice.new("Laranja", "300 ml", 3.0) }
 
-  let!(:order) { Order::Order.new(customer, restaurant, [menu_main, menu_juice]).create }
+  let!(:order_create) { Order::Order.new(customer, restaurant, [menu_main, menu_juice]).create }
   let!(:order_without_items) { Order::Order.new(customer, restaurant).create }
 
   context "Create" do
     it "attributes" do
+      order = order_create[:order]
+
       expect(order.customer.name).to eq("Luciano")
       expect(order.customer.phone).to eq("992444444")
       expect(order.customer).to eq(customer)
@@ -43,19 +45,23 @@ RSpec.describe Order do
     end
 
     it "order without items" do
-      expect(order_without_items).to include("O pedido deve ter ao menos 1 item")
+      expect(order_without_items[:message]).to include("O pedido deve ter ao menos 1 item")
+    end
+
+    it "customer new return message" do
+      expect(order_create[:message]).to include("Olá, aqui é da Lanchonete Godzilla")
     end
   end
 
   context "order confirm" do
     it "order not confirm default" do
-      expect(order.confirmed).to be_falsey
+      expect(order_create[:order].confirmed).to be_falsey
     end
 
     it "order confirmed" do
-      order.confirm_order
+      order_create[:order].confirm_order
 
-      expect(order.confirmed).to be_truthy
+      expect(order_create[:order].confirmed).to be_truthy
     end
   end
 end
