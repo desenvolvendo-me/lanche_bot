@@ -41,16 +41,25 @@ module Customer
       errors.flatten
     end
 
-    def exists_phone?(phone)
-      Customer.all.select do |customer|
-        return "Phone já existe" if customer.phone == phone
-      end
-    end
-
     def self.find(id)
       customers = Customer.all
       customers.select do |customer|
         return customer if customer.id == id
+      end
+    end
+
+    def self.search_by_phone(customer_phone)
+      customers = Customer.all
+      customers.select do |customer|
+        return customer if (customer.phone == customer_phone)
+      end
+    end
+
+    private
+
+    def exists_phone?(phone)
+      Customer.all.select do |customer|
+        return "Phone já existe" if customer.phone == phone
       end
     end
   end
