@@ -51,7 +51,7 @@ module Customer
     def self.search_by_phone(customer_phone)
       customers = Customer.all
       customers.select do |customer|
-        return customer if (customer.phone == customer_phone)
+        return customer if customer.phone == customer_phone
       end
     end
 

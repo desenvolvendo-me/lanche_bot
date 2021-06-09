@@ -42,7 +42,6 @@ RSpec.describe "customer" do
   end
 
   context "Search customer" do
-
     it "get customer  phone" do
       customer_phone = "18999999"
 
