@@ -39,7 +39,7 @@ module Order
     def new_customer?
       "Olá, aqui é da Lanchonete #{restaurant.name}" if Order.count_orders_by_costumer(customer.name) == 1
     end
-    
+
     def confirm_order
       @confirmed = true
     end
