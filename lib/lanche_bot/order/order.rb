@@ -17,7 +17,7 @@ module Order
     def create
       errors = validate_fields
       if errors.empty?
-        attributes = [id, customer.name, restaurant.name, items, confirmed.to_s]
+        attributes = [id, customer.name, customer.phone, restaurant.name, items, confirmed.to_s]
         Helpers.csv_include(DATA_PATH, attributes)
         { order: self, message: new_customer? }
       else
