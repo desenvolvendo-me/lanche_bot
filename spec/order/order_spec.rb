@@ -45,5 +45,9 @@ RSpec.describe Order do
     it "order without items" do
       expect(order_without_items).to include("O pedido deve ter ao menos 1 item")
     end
+
+    it "customer new return message" do
+      expect(Order::Order.new_costumer?("Maria", "Godizilla")).to include("Olá, aqui é da Lanchonete Godizilla")
+    end
   end
 end
