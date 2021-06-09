@@ -63,5 +63,12 @@ RSpec.describe Order do
 
       expect(order_create[:order].confirmed).to be_truthy
     end
+
+    it "return confirm message" do
+      order_create[:order].confirm_order
+
+      expect(order_create[:order].order_confirmed?).to eq("Seu Pedido Foi Confirmado!")
+    end
+
   end
 end
