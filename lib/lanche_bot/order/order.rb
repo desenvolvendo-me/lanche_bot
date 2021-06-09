@@ -31,13 +31,13 @@ module Order
       errors
     end
 
-    def self.count_orders_by_costumer(name)
-      arr = Helpers.csv_parse(DATA_PATH).select { |row| row["customer_name"] == name }
+    def self.count_orders_by_costumer(phone)
+      arr = Helpers.csv_parse(DATA_PATH).select { |row| row["customer_phone"] == phone }
       arr.length
     end
 
     def new_customer?
-      "Olá, aqui é da Lanchonete #{restaurant.name}" if Order.count_orders_by_costumer(customer.name) == 1
+      "Olá, aqui é da Lanchonete #{restaurant.name}" if Order.count_orders_by_costumer(customer.phone) == 1
     end
 
     def confirm_order
