@@ -19,7 +19,7 @@ module Order
       if errors.empty?
         attributes = [id, customer.name, customer.phone, restaurant.name, items, confirmed.to_s]
         Helpers.csv_include(DATA_PATH, attributes)
-        { order: self, message: new_customer? }
+        { order: self, message: new_customer?, total_price: total_price }
       else
         { order: nil, message: errors }
       end
@@ -46,6 +46,10 @@ module Order
 
     def confirm_order
       @confirmed = true
+    end
+
+    def total_price
+      items.sum(&:price)
     end
   end
 end
