@@ -4,7 +4,7 @@ require "lanche_bot/order/order"
 
 RSpec.describe Order do
   csv_path = "spec/fixtures/order-test.csv"
-  header = %w[id customer_name customer_phone order confirmed]
+  header = %w[id customer_name customer_phone order confirmed canceled canceled_by]
 
   before do
     stub_const("Order::Order::DATA_PATH", csv_path)
@@ -69,8 +69,30 @@ RSpec.describe Order do
 
     it "return confirm message" do
       order_create[:order].confirm_order
-
       expect(order_create[:order].order_confirmed?).to eq("Seu Pedido Foi Confirmado!")
+    end
+  end
+
+  context "order cancel" do
+    it "order not cancel default" do
+      expect(order_create[:order].canceled).to be_falsey
+    end
+
+    it "order canceled" do
+      order_create[:order].cancel_order("Customer")
+      expect(order_create[:order].canceled).to be_truthy
+    end
+
+    it "return cancel message by Customer" do
+      order = order_create[:order]
+      order.cancel_order("Customer")
+      expect(order.order_canceled?).to eq("Seu Pedido Foi Cancelado por Luciano!")
+    end
+
+    it "return cancel message by Restaurant" do
+      order = order_create[:order]
+      order.cancel_order("Restaurant")
+      expect(order.order_canceled?).to eq("Seu Pedido Foi Cancelado por Godzilla!")
     end
   end
 end
