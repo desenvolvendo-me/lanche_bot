@@ -47,12 +47,17 @@ RSpec.describe Order do
       expect(Order::Order.count_orders_by_costumer("992444444")).to eq(1)
     end
 
-    it "order without items" do
+    it "order without items and price total nil" do
       expect(order_without_items[:message]).to include("O pedido deve ter ao menos 1 item")
+      expect(order_without_items[:total_price]).to be_nil
     end
 
     it "customer new return message" do
       expect(order_create[:message]).to include("Olá, aqui é da Lanchonete Godzilla")
+    end
+
+    it "order return total price" do
+      expect(order_create[:total_price]).to eq(5.5)
     end
   end
 
