@@ -28,19 +28,26 @@ RSpec.describe Order do
 
   let!(:order_without_items) { Order::Order.new({ customer: customer, restaurant: restaurant }).create }
 
-  context "Create" do
-    it "attributes" do
-      order = order_create[:order]
+  describe "Create" do
+    let(:order) { order_create[:order] }
+    context "attributes" do
+      it "customer" do
+        customer = order.customer
 
-      expect(order.customer.name).to eq("Luciano")
-      expect(order.customer.phone).to eq("992444444")
-      expect(order.customer).to eq(customer)
+        expect(customer.name).to eq("Luciano")
+        expect(customer.phone).to eq("992444444")
+      end
 
-      expect(order.restaurant.name).to eq("Godzilla")
-      expect(order.restaurant).to eq(restaurant)
+      it "restaurant" do
+        expect(order.restaurant.name).to eq("Godzilla")
+      end
 
-      expect(order.items.first.name).to eq("Misto Quente")
-      expect(order.items.last.name).to eq("Laranja")
+      it "items" do
+        items = order.items
+
+        expect(items.first.name).to eq("Misto Quente")
+        expect(items.last.name).to eq("Laranja")
+      end
     end
 
     it "count orders by customers" do
