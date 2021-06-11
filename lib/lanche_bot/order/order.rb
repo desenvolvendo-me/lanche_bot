@@ -56,10 +56,10 @@ module Order
       change_status
     end
 
-    def cancel_order(canceled_by)
+    def cancel_order(by_canceled)
       @canceled = true
       @status = "Cancelado"
-      case canceled_by
+      case by_canceled
       when "Customer"
         @canceled_by = customer.name
       when "Restaurant"
