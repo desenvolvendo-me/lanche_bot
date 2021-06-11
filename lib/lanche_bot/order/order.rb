@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Module Order
 module Order
   # class to order
   class Order
@@ -19,9 +20,8 @@ module Order
     def create
       errors = validate_fields
       if errors.empty?
-        attributes = [id, customer.name, customer.phone, restaurant.name, items, confirmed.to_s, canceled, canceled_by]
         Helpers.csv_include(DATA_PATH, attributes)
-        { order: self, message: new_customer? }
+        { order: self, message: new_customer?, total_price: total_price }
       else
         { order: nil, message: errors }
       end
@@ -62,6 +62,16 @@ module Order
       when "Restaurant"
         @canceled_by = restaurant.name
       end
+    end
+
+    def total_price
+      items.sum(&:price)
+    end
+
+    private
+
+    def attributes
+      [id, customer.name, customer.phone, restaurant.name, items, confirmed.to_s, canceled, canceled_by]
     end
   end
 end
