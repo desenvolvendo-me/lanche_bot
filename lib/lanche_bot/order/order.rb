@@ -21,9 +21,8 @@ module Order
     def create
       errors = validate_fields
       if errors.empty?
-        attributes = [id, customer.name, customer.phone, restaurant.name, items, confirmed.to_s, canceled, canceled_by]
         Helpers.csv_include(DATA_PATH, attributes)
-        { order: self, message: new_customer? }
+        { order: self, message: new_customer?, total_price: total_price }
       else
         { order: nil, message: errors }
       end
@@ -68,6 +67,10 @@ module Order
       end
     end
 
+    def total_price
+      items.sum(&:price)
+    end
+
     def change_status
       return if %w[Cancelado Entregue].include?(status)
 
@@ -86,6 +89,12 @@ module Order
         "Entregue",
         "Cancelado"
       ]
+    end
+
+    private
+
+    def attributes
+      [id, customer.name, customer.phone, restaurant.name, items, confirmed.to_s, canceled, canceled_by]
     end
   end
 end
