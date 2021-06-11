@@ -28,7 +28,7 @@ RSpec.describe Order do
 
   let!(:order_without_items) { Order::Order.new({ customer: customer, restaurant: restaurant }).create }
 
-  let!(:order) { order_create[:order] }
+  let(:order) { order_create[:order] }
 
   context "Create" do
     it "attributes" do
@@ -41,6 +41,8 @@ RSpec.describe Order do
 
       expect(order.items.first.name).to eq("Misto Quente")
       expect(order.items.last.name).to eq("Laranja")
+
+      expect(order.status).to eq("Esperando confirmação")
     end
 
     it "count orders by customers" do
@@ -91,6 +93,62 @@ RSpec.describe Order do
     it "return cancel message by Restaurant" do
       order.cancel_order("Restaurant")
       expect(order.order_canceled?).to eq("Seu Pedido Foi Cancelado por Godzilla!")
+      expect(order.status).to eq("Cancelado")
+    end
+  end
+
+  describe "Change status to next" do
+    it "status default" do
+      expect(order.status).to eq("Esperando confirmação")
+    end
+
+    it "Esperando confirmação => Confirmado" do
+      order.status = "Esperando confirmação"
+
+      order.change_status
+      expect(order.status).to eq("Confirmado")
+    end
+
+    it "Confirmado => Em espera para preparação" do
+      order.status = "Confirmado"
+
+      order.change_status
+      expect(order.status).to eq("Em espera para preparação")
+    end
+
+    it "Em espera para preparação => Em preparação" do
+      order.status = "Em espera para preparação"
+
+      order.change_status
+      expect(order.status).to eq("Em preparação")
+    end
+
+    it "Em preparação => Pronto para entrega" do
+      order.status = "Em preparação"
+
+      order.change_status
+      expect(order.status).to eq("Pronto para entrega")
+    end
+
+    it "Pronto para entrega => Saiu para entregar" do
+      order.status = "Pronto para entrega"
+
+      order.change_status
+      expect(order.status).to eq("Saiu para entregar")
+    end
+
+    it "Saiu para entregar => Entregue" do
+      order.status = "Saiu para entregar"
+
+      order.change_status
+      expect(order.status).to eq("Entregue")
+    end
+
+    it "Entregue => Cancelado / not change" do
+      order.status = "Entregue"
+
+      order.change_status
+      expect(order.status).to eq("Entregue")
     end
   end
 end
