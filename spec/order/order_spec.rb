@@ -54,6 +54,14 @@ RSpec.describe Order do
     it "customer new return message" do
       expect(order_create[:message]).to include("Olá, aqui é da Lanchonete Godzilla")
     end
+
+    it "customer return message" do
+      order2 = rder::Order.new({ customer: customer, restaurant: restaurant, items: [menu_main, menu_juice] }).create
+      expect(
+        order2[:message]
+      ).to include("Olá, Luciano, fique à vontade pra escolher o seu lanche Vai querer o cardápio,"\
+                   " ou vai pedir o de sempre?")
+    end
   end
 
   context "order confirm" do
