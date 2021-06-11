@@ -5,6 +5,7 @@ module Order
   class Order
     DATA_PATH = "data/orders.csv"
     attr_reader :id, :customer, :restaurant, :items, :confirmed, :canceled, :canceled_by
+    attr_accessor :status
 
     def initialize(args)
       @id = rand(2000)
@@ -14,6 +15,7 @@ module Order
       @confirmed = args.fetch(:confirmed, false)
       @canceled = args.fetch(:canceled, false)
       @canceled_by = args.fetch(:canceled_by, "")
+      @status = args.fetch(:status, "Esperando confirmação")
     end
 
     def create
@@ -52,16 +54,38 @@ module Order
 
     def confirm_order
       @confirmed = true
+      change_status
     end
 
     def cancel_order(canceled_by)
       @canceled = true
+      @status = "Cancelado"
       case canceled_by
       when "Customer"
         @canceled_by = customer.name
       when "Restaurant"
         @canceled_by = restaurant.name
       end
+    end
+
+    def change_status
+      return if %w[Cancelado Entregue].include?(status)
+
+      index = all_status.find_index(status) + 1 || 0
+      @status = all_status[index]
+    end
+
+    def all_status
+      [
+        "Esperando confirmação",
+        "Confirmado",
+        "Em espera para preparação",
+        "Em preparação",
+        "Pronto para entrega",
+        "Saiu para entregar",
+        "Entregue",
+        "Cancelado"
+      ]
     end
   end
 end
