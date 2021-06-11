@@ -70,10 +70,9 @@ RSpec.describe Order do
       ).to include("Olá, Luciano, fique à vontade pra escolher o seu lanche Vai querer o cardápio,"\
                    " ou vai pedir o de sempre?")
     end
-    
+
     it "order return total price" do
       expect(order_create[:total_price]).to eq(5.5)
-
     end
   end
 
