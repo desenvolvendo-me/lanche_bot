@@ -28,10 +28,10 @@ RSpec.describe Order do
 
   let!(:order_without_items) { Order::Order.new({ customer: customer, restaurant: restaurant }).create }
 
+  let!(:order) { order_create[:order] }
+
   context "Create" do
     it "attributes" do
-      order = order_create[:order]
-
       expect(order.customer.name).to eq("Luciano")
       expect(order.customer.phone).to eq("992444444")
       expect(order.customer).to eq(customer)
@@ -58,39 +58,37 @@ RSpec.describe Order do
 
   context "order confirm" do
     it "order not confirm default" do
-      expect(order_create[:order].confirmed).to be_falsey
+      expect(order.confirmed).to be_falsey
     end
 
     it "order confirmed" do
-      order_create[:order].confirm_order
+      order.confirm_order
 
-      expect(order_create[:order].confirmed).to be_truthy
+      expect(order.confirmed).to be_truthy
     end
 
     it "return confirm message" do
-      order_create[:order].confirm_order
-      expect(order_create[:order].order_confirmed?).to eq("Seu Pedido Foi Confirmado!")
+      order.confirm_order
+      expect(order.order_confirmed?).to eq("Seu Pedido Foi Confirmado!")
     end
   end
 
   context "order cancel" do
     it "order not cancel default" do
-      expect(order_create[:order].canceled).to be_falsey
+      expect(order.canceled).to be_falsey
     end
 
     it "order canceled" do
-      order_create[:order].cancel_order("Customer")
-      expect(order_create[:order].canceled).to be_truthy
+      order.cancel_order("Customer")
+      expect(order.canceled).to be_truthy
     end
 
     it "return cancel message by Customer" do
-      order = order_create[:order]
       order.cancel_order("Customer")
       expect(order.order_canceled?).to eq("Seu Pedido Foi Cancelado por Luciano!")
     end
 
     it "return cancel message by Restaurant" do
-      order = order_create[:order]
       order.cancel_order("Restaurant")
       expect(order.order_canceled?).to eq("Seu Pedido Foi Cancelado por Godzilla!")
     end
