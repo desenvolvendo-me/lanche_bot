@@ -1,2 +1,2 @@
-id,customer_name,order,confirmed
-749,Luciano,Godzilla,"[#<Menu::MenuMain:0x0000559bb3ba3c50 @name=""Misto Quente"", @description=""Queijo e Presunto"", @price=2.5>, #<Menu::MenuJuice:0x0000559bb3ba3c28 @name=""Laranja"", @cup_size=""300 ml"", @price=3.0>]",false
+id,customer_name,customer_phone,order,confirmed
+1727,Luciano,992444444,Godzilla,"[#<Menu::MenuMain:0x000055a83dd5aee0 @name=""Misto Quente"", @description=""Queijo e Presunto"", @price=2.5>, #<Menu::MenuJuice:0x000055a83dd5aeb8 @name=""Laranja"", @cup_size=""300 ml"", @price=3.0>]",false
