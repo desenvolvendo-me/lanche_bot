@@ -69,6 +69,14 @@ RSpec.describe Order do
       expect(order_create[:message]).to include("Olá, aqui é da Lanchonete Godzilla")
     end
 
+    it "customer return message" do
+      order2 = Order::Order.new({ customer: customer, restaurant: restaurant, items: [menu_main, menu_juice] }).create
+      expect(
+        order2[:message]
+      ).to include("Olá, Luciano, fique à vontade pra escolher o seu lanche Vai querer o cardápio,"\
+                   " ou vai pedir o de sempre?")
+    end
+
     it "order return total price" do
       expect(order_create[:total_price]).to eq(5.5)
     end

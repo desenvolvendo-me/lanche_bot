@@ -40,7 +40,12 @@ module Order
     end
 
     def new_customer?
-      "Olá, aqui é da Lanchonete #{restaurant.name}" if Order.count_orders_by_costumer(customer.phone) == 1
+      if Order.count_orders_by_costumer(customer.phone) == 1
+        "Olá, aqui é da Lanchonete #{restaurant.name}"
+      else
+        "Olá, #{customer.name}, fique à vontade pra escolher o seu lanche Vai querer o cardápio,"\
+        " ou vai pedir o de sempre?"
+      end
     end
 
     def order_confirmed?
