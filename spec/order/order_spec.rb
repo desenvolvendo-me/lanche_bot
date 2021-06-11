@@ -30,31 +30,47 @@ RSpec.describe Order do
 
   let(:order) { order_create[:order] }
 
-  context "Create" do
-    it "attributes" do
-      expect(order.customer.name).to eq("Luciano")
-      expect(order.customer.phone).to eq("992444444")
-      expect(order.customer).to eq(customer)
+  describe "Create" do
+    let(:order) { order_create[:order] }
+    context "attributes" do
+      it "customer" do
+        customer = order.customer
 
-      expect(order.restaurant.name).to eq("Godzilla")
-      expect(order.restaurant).to eq(restaurant)
+        expect(customer.name).to eq("Luciano")
+        expect(customer.phone).to eq("992444444")
+      end
 
-      expect(order.items.first.name).to eq("Misto Quente")
-      expect(order.items.last.name).to eq("Laranja")
+      it "restaurant" do
+        expect(order.restaurant.name).to eq("Godzilla")
+      end
 
-      expect(order.status).to eq("Esperando confirmação")
+      it "items" do
+        items = order.items
+
+        expect(items.first.name).to eq("Misto Quente")
+        expect(items.last.name).to eq("Laranja")
+      end
+
+      it "status default" do
+        expect(order.status).to eq("Esperando confirmação")
+      end
     end
 
     it "count orders by customers" do
       expect(Order::Order.count_orders_by_costumer("992444444")).to eq(1)
     end
 
-    it "order without items" do
+    it "order without items and price total nil" do
       expect(order_without_items[:message]).to include("O pedido deve ter ao menos 1 item")
+      expect(order_without_items[:total_price]).to be_nil
     end
 
     it "customer new return message" do
       expect(order_create[:message]).to include("Olá, aqui é da Lanchonete Godzilla")
+    end
+
+    it "order return total price" do
+      expect(order_create[:total_price]).to eq(5.5)
     end
   end
 
