@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Module Order
 module Order
   # class to order
   class Order
