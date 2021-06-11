@@ -4,7 +4,7 @@ module Menu
   # menuPrincipal
   class MenuMain
     attr_accessor :price
-    attr_reader :name, :cup_size
+    attr_reader :name, :description, :id
 
     def initialize(name, description, price)
       @name = name
