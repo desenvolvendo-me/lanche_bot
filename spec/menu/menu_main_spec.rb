@@ -24,4 +24,12 @@ RSpec.describe Menu::MenuMain do
       expect(menu_main).to eq(menu_main)
     end
   end
+
+  it "Show Menu" do
+    menu = Menu::MenuMain.print_menu
+
+    expect(menu[0].name).to eq("Frango xadrez")
+    expect(menu[0].description).to eq("frango delicioso")
+    expect(menu[0].price).to eq("12.40")
+  end
 end
