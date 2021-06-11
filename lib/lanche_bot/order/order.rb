@@ -56,8 +56,12 @@ module Order
 
     def cancel_order(canceled_by)
       @canceled = true
-      @canceled_by = customer.name if canceled_by == "Customer"
-      @canceled_by = restaurant.name if canceled_by == "Restaurant"
+      case canceled_by
+      when "Customer"
+        @canceled_by = customer.name
+      when "Restaurant"
+        @canceled_by = restaurant.name
+      end
     end
   end
 end
