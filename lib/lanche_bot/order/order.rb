@@ -4,7 +4,7 @@ module Order
   # class to order
   class Order
     DATA_PATH = "data/orders.csv"
-    attr_reader :id, :customer, :restaurant, :items, :confirmed
+    attr_reader :id, :customer, :restaurant, :items, :confirmed, :canceled, :canceled_by
 
     def initialize(args)
       @id = rand(2000)
@@ -12,12 +12,14 @@ module Order
       @restaurant = args.fetch(:restaurant)
       @items = args.fetch(:items, [])
       @confirmed = args.fetch(:confirmed, false)
+      @canceled = args.fetch(:canceled, false)
+      @canceled_by = args.fetch(:canceled_by, "")
     end
 
     def create
       errors = validate_fields
       if errors.empty?
-        attributes = [id, customer.name, customer.phone, restaurant.name, items, confirmed.to_s]
+        attributes = [id, customer.name, customer.phone, restaurant.name, items, confirmed.to_s, canceled, canceled_by]
         Helpers.csv_include(DATA_PATH, attributes)
         { order: self, message: new_customer? }
       else
@@ -41,11 +43,25 @@ module Order
     end
 
     def order_confirmed?
-      "Seu Pedido Foi Confirmado!" if @confirmed
+      "Seu Pedido Foi Confirmado!" if confirmed
+    end
+
+    def order_canceled?
+      "Seu Pedido Foi Cancelado por #{canceled_by}!" if canceled
     end
 
     def confirm_order
       @confirmed = true
+    end
+
+    def cancel_order(canceled_by)
+      @canceled = true
+      case canceled_by
+      when "Customer"
+        @canceled_by = customer.name
+      when "Restaurant"
+        @canceled_by = restaurant.name
+      end
     end
   end
 end
