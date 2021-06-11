@@ -15,12 +15,12 @@ RSpec.describe Menu::MenuMain do
     @name = "Frango xadrez"
     @description = "frango delicioso"
     @price = "12.40"
-    @menu_main = Menu::MenuMain.new({name: @name, description: @description, price: @price}).create
+    @menu_main = Menu::MenuMain.new({ name: @name, description: @description, price: @price }).create
   end
 
   context "when the object is valid" do
     it "should validate object created" do
-      menu_main = Menu::MenuMain.new({name: "x-tudo", description: "um lanche muito bom", price: 15.0}).create
+      menu_main = Menu::MenuMain.new({ name: "x-tudo", description: "um lanche muito bom", price: 15.0 }).create
       expect(menu_main).to eq(menu_main)
     end
   end

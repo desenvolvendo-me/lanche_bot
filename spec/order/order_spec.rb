@@ -19,7 +19,7 @@ RSpec.describe Order do
 
   let(:customer) { Customer::Customer.find("22") }
   let(:restaurant) { Restaurant::Restaurant.new("Godzilla", "Rua do Divina Providência, nº 1234").create }
-  let(:menu_main) { Menu::MenuMain.new("Misto Quente", "Queijo e Presunto", 2.5) }
+  let(:menu_main) { Menu::MenuMain.new({ name: "Misto Quente", description: "Queijo e Presunto", price: 2.5 }) }
   let(:menu_juice) { Menu::MenuJuice.new("Laranja", "300 ml", 3.0) }
 
   let!(:order_create) do
