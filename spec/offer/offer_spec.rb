@@ -3,7 +3,7 @@
 require "lanche_bot/offer/offer"
 
 def scenario
-  let(:menu_main) { Menu::MenuMain.new("x-tudo", "um lanche muito bom", 15.0) }
+  let(:menu_main) { Menu::MenuMain.new({ name: "x-tudo", description: "um lanche muito bom", price: 15.0 }) }
   let(:menu_juice) { Menu::MenuJuice.new("manga", "300ml", 12.00) }
   let(:combo) { Combo::Combo.new(menu_main, menu_juice) }
   let(:lunch) { Lunch::Lunch.new("x-tudo", 12.00) }
