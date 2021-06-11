@@ -11,6 +11,6 @@ gem "rspec", "~> 3.0"
 
 gem "rubocop", "~> 1.7"
 
-gem "simplecov"
+gem "simplecov", "~> 0.21.2"
 
-gem "rubycritic"
+gem "rubycritic", "~> 4.6.1"
