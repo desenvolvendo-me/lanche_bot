@@ -21,12 +21,6 @@ RSpec.describe "customer" do
     expect(@customer.id).to be_truthy
   end
 
-  it "get customer with id = 1" do
-    customer = Customer::Customer.find("1")
-
-    expect(customer.name).to eq("Luciano")
-  end
-
   context "validate" do
     it "name is required" do
       customer = Customer::Customer.new("", @phone).create
@@ -44,6 +38,24 @@ RSpec.describe "customer" do
       customer = Customer::Customer.new(@name, @phone).create
 
       expect(customer).to include("Phone já existe")
+    end
+  end
+
+  context "Search customer" do
+    it "get customer  phone" do
+      customer_phone = "18999999"
+
+      customer = Customer::Customer.search_by_phone(customer_phone)
+
+      expect(customer.id).to eq("1")
+      expect(customer.name).to eq("Luciano")
+      expect(customer.phone).to eq("18999999")
+    end
+
+    it "get customer with id = 1" do
+      customer = Customer::Customer.find("1")
+
+      expect(customer.name).to eq("Luciano")
     end
   end
 end

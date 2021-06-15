@@ -1,3 +1,3 @@
-id,customer_name,order
-74,Levi,Godzilla,"[#<Menu::MenuMain:0x0000557224252c40 @name=""Misto Quente"", @description=""Queijo e Presunto"", @price=2.5>, #<Menu::MenuJuice:0x0000557224252b28 @name=""Laranja"", @cup_size=""300 ml"", @price=3.0>]"
-728,Levi,Godzilla,"[#<Menu::MenuMain:0x000055e8746aa9e8 @name=""Misto Quente"", @description=""Queijo e Presunto"", @price=2.5>, #<Menu::MenuJuice:0x000055e8746aa948 @name=""Laranja"", @cup_size=""300 ml"", @price=3.0>]"
+id,customer_name,customer_phone ,order,confirmed
+74,Levi,992444444,Godzilla,"[#<Menu::MenuMain:0x0000557224252c40 @name=""Misto Quente"", @description=""Queijo e Presunto"", @price=2.5>, #<Menu::MenuJuice:0x0000557224252b28 @name=""Laranja"", @cup_size=""300 ml"", @price=3.0>]"
+728,Levi,992444444,"[#<Menu::MenuMain:0x000055e8746aa9e8 @name=""Misto Quente"", @description=""Queijo e Presunto"", @price=2.5>, #<Menu::MenuJuice:0x000055e8746aa948 @name=""Laranja"", @cup_size=""300 ml"", @price=3.0>]"

@@ -4,9 +4,9 @@ require "lanche_bot/combo/combo"
 
 def scenario
   before do
-    @menu_main = Menu::MenuMain.new("X-Burger",
-                                    "Pão, queijo, e hamburger",
-                                    10.00)
+    @menu_main = Menu::MenuMain.new({ name: "X-Burger",
+                                      description: "Pão, queijo, e hamburger",
+                                      price: 10.00 })
     @menu_juice = Menu::MenuJuice.new("Laranja",
                                       "300 ml",
                                       3.00)
