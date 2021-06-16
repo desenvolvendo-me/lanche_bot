@@ -13,3 +13,13 @@ package.json
 # rspec failure tracking
 .rspec_status
 node_modules
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+.idea
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
