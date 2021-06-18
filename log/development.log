@@ -252,3 +252,5 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 12ms (Views: 6.9ms | ActiveRecord: 0.0ms | Allocations: 1809)
 
 
+  [1m[35m (1228.8ms)[0m  [1m[35mCREATE DATABASE "lanche_bot_development" ENCODING = 'unicode'[0m
+  [1m[35m (845.1ms)[0m  [1m[35mCREATE DATABASE "lanche_bot_test" ENCODING = 'unicode'[0m
