@@ -1,24 +1,21 @@
-# README
+#  Lanche Bot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+There is a nice restaurant on my neighborhood. I friend of mine works there as the receptionist listening on many delivery channels as possible.
 
-Things you may want to cover:
+Lanche bot is a bot for whatsapp made with rails framework and consuming a Twilio API.
+This prototype simulates a talk I used to have with the receptionist when I ask the same food always.
 
-* Ruby version
+## Give to it a try
 
-* System dependencies
+Ask the Twilio number for this project in private to this repository owner. After this I'll give you the password to initialize the lanche bot.
 
-* Configuration
+It is in portuguese so...
 
-* Database creation
+Things you may initially ask:
 
-* Database initialization
+1. "Fala", to initialize the talk;
+2. "Qual lanche que tem hoje?" or "Me manda o menu";
+3. "De que que tem o suco?";
+4. "Quanto que tá o x bacon?
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The customization is been according to Everton concerns.
