@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-require "lanche_bot/customer/customer"
 require "lanche_bot/combo/combo"
 require "lanche_bot/lunch/lunch"
 
 module Offer
   # promocao
   class Offer
-    attr_accessor :combo, :customer, :lunch, :juice, :quantity
+    attr_accessor :combo, :lunch, :juice, :quantity
 
     def initialize(combo, lunch, juice, quantity)
       @combo = combo
