@@ -3,6 +3,7 @@ AllCops:
   Exclude:
     - 'bin/bundle'
     - 'db/schema.rb'
+    - 'db/migrate/*'
     - 'node_modules/**/*'
 
 Style/StringLiterals:
