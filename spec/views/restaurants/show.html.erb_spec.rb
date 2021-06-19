@@ -1,12 +1,14 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "restaurants/show", type: :view do
   before(:each) do
     @restaurant = assign(:restaurant, Restaurant.create!(
-      name: "Name",
-      address: "Address",
-      is_open: false
-    ))
+                                        name: "Name",
+                                        address: "Address",
+                                        is_open: false
+                                      ))
   end
 
   it "renders attributes in <p>" do

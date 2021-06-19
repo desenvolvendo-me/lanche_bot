@@ -1,19 +1,21 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "restaurants/index", type: :view do
   before(:each) do
     assign(:restaurants, [
-      Restaurant.create!(
-        name: "Name",
-        address: "Address",
-        is_open: false
-      ),
-      Restaurant.create!(
-        name: "Name",
-        address: "Address",
-        is_open: false
-      )
-    ])
+             Restaurant.create!(
+               name: "Name",
+               address: "Address",
+               is_open: false
+             ),
+             Restaurant.create!(
+               name: "Name",
+               address: "Address",
+               is_open: false
+             )
+           ])
   end
 
   it "renders a list of restaurants" do
