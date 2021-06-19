@@ -7,9 +7,9 @@
 /spec/reports/
 /tmp/
 .idea/
-config/database.yml
 package-lock.json
 package.json
+config/database.yml
 
 # rspec failure tracking
 .rspec_status
