@@ -1,5 +1,10 @@
 AllCops:
   TargetRubyVersion: 2.6
+  Exclude:
+    - 'bin/bundle'
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'node_modules/**/*'
 
 Style/StringLiterals:
   Enabled: true

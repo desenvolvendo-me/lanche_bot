@@ -1,41 +1,21 @@
-# LancheBot
+#  Lanche Bot
 
-This is gonna be a chatbot for automated talk between the customer and the delivery food house. 
+There is a nice restaurant on my neighborhood. I friend of mine works there as the receptionist listening on many delivery channels as possible.
 
-## Installation
+Lanche bot is a bot for whatsapp made with rails framework and consuming a Twilio API.
+This prototype simulates a talk I used to have with the receptionist when I ask the same food always.
 
-Add this line to your application's Gemfile:
+## Give to it a try
 
-```ruby
-gem 'lanche_bot'
-```
+Ask the Twilio number for this project in private to this repository owner. After this I'll give you the password to initialize the lanche bot.
 
-And then execute:
+It is in portuguese so...
 
-    $ bundle install
+Things you may initially ask:
 
-Or install it yourself as:
+1. "Fala", to initialize the talk;
+2. "Qual lanche que tem hoje?" or "Me manda o menu";
+3. "De que que tem o suco?";
+4. "Quanto que tá o x bacon?
 
-    $ gem install lanche_bot
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/lanche_bot. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/lanche_bot/blob/master/CODE_OF_CONDUCT.md).
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the LancheBot project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/lanche_bot/blob/master/CODE_OF_CONDUCT.md).
+The customization is been according to Everton concerns.
