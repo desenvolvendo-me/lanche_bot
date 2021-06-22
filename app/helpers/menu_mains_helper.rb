@@ -1,0 +1,2 @@
+module MenuMainsHelper
+end
