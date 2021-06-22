@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# controller to menu
 class MenuMainsController < ApplicationController
   before_action :set_menu_main, only: %i[show edit update destroy]
 

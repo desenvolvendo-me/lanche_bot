@@ -39,4 +39,4 @@ jobs:
         bundle exec rake
     - name: Rubocop Check
       run: |
-         bundle exec rubocop
+         bundle exec rubocop -A
