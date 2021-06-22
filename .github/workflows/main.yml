@@ -22,7 +22,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6.6
+        ruby-version: 2.6.7
     - name: Run the default task
       env:
         PGHOST: localhost
