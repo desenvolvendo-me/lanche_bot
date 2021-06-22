@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :menu_mains
   root "welcome#welcome"
   resources :restaurants
   resources :customers
