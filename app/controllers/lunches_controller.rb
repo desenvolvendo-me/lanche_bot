@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# controller to lunches
 class LunchesController < ApplicationController
-  before_action :set_lunch, only: %i[ show edit update destroy ]
+  before_action :set_lunch, only: %i[show edit update destroy]
 
   # GET /lunches or /lunches.json
   def index
@@ -7,8 +10,7 @@ class LunchesController < ApplicationController
   end
 
   # GET /lunches/1 or /lunches/1.json
-  def show
-  end
+  def show; end
 
   # GET /lunches/new
   def new
@@ -16,8 +18,7 @@ class LunchesController < ApplicationController
   end
 
   # GET /lunches/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /lunches or /lunches.json
   def create
@@ -57,13 +58,14 @@ class LunchesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lunch
-      @lunch = Lunch.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def lunch_params
-      params.require(:lunch).permit(:name, :price)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lunch
+    @lunch = Lunch.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def lunch_params
+    params.require(:lunch).permit(:name, :price)
+  end
 end
