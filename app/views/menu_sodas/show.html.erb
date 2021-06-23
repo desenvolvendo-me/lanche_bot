@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @menu_soda.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @menu_soda.type %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @menu_soda.price %>
+</p>
+
+<%= link_to 'Edit', edit_menu_soda_path(@menu_soda) %> |
+<%= link_to 'Back', menu_sodas_path %>
